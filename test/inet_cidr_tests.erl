@@ -5,6 +5,7 @@
 -include_lib("eunit/include/eunit.hrl").
 
 parse_ipv4_test() ->
+	?assert(inet_cidr:parse("192.168.0.0", true) == {{192,168,0,0}, {192,168,0,0}, 32}),
 	?assert(inet_cidr:parse("192.168.0.0/0", true) == {{0,0,0,0}, {255,255,255,255}, 0}),
 	?assert(inet_cidr:parse("192.168.0.0/8", true) == {{192,0,0,0}, {192,255,255,255}, 8}),
 	?assert(inet_cidr:parse("192.168.0.0/15", true) == {{192,168,0,0}, {192,169,255,255}, 15}),
