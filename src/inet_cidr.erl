@@ -77,8 +77,8 @@ bit_count({_, _, _, _, _, _, _, _}) -> 128.
 
 parse_cidr(S, Adjust) ->
     {Prefix, LenStr} = case re:split(S, "/", [{return, list}, {parts, 2}]) of
-        [Prefix] -> {Prefix, "32"};
-        [Prefix, LStr] -> {Prefix, LStr}
+        [Pr] -> {Pr, "32"};
+        [Pr, LStr] -> {Pr, LStr}
     end,
     {ok, StartAddr} = inet:parse_address(Prefix),
     {PrefixLen, _} = string:to_integer(LenStr),
